@@ -1,7 +1,8 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
+
 
 namespace TransactionService.Infrastructure.Data;
 
-public class TransactionDbContext
+public class TransactionDbContext : DbContext
 {
 }
