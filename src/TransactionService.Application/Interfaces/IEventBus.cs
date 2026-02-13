@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace TransactionService.Infrastructure.Messaging;
 
-namespace TransactionService.Application.Interfaces
+public class FakeEventBus : IEventBus
 {
-    internal interface IEventBus
+    public Task PublishAsync<T>(T @event)
     {
+        return Task.CompletedTask;
     }
 }

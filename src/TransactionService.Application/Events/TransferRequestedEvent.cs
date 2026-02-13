@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace TransactionService.Application.Events;
 
-namespace TransactionService.Application.Events
-{
-    internal class TransferRequestedEvent
-    {
-    }
-}
+public record TransferRequestedEvent(
+    Guid TransactionId,
+    Guid FromAccountId,
+    Guid ToAccountId,
+    decimal Amount,
+    string Currency
+);

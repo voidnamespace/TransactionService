@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace TransactionService.Application.Exceptions;
 
-namespace TransactionService.Application.Exceptions
+public class ConcurrencyException : Exception
 {
-    internal class ConcurrencyException
+    public ConcurrencyException(string message)
+        : base(message)
     {
     }
 }

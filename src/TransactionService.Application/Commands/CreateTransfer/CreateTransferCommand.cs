@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
+namespace TransactionService.Application.Commands.CreateTransfer;
 
-namespace TransactionService.Application.Commands.CreateTransfer
-{
-    internal class CreateTransferCommand
-    {
-    }
-}
+public record CreateTransferCommand(
+    Guid FromAccountId,
+    Guid ToAccountId,
+    decimal Amount,
+    string Currency
+) : IRequest<Guid>;

@@ -1,10 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TransactionService.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using TransactionService.Application.Interfaces;
 
-namespace TransactionService.Infrastructure.Persistence.UnitOfWork
+namespace TransactionService.Infrastructure.Persistence.UnitOfWork;
+
+public class UnitOfWork : IUnitOfWork
 {
-    internal class UnitOfWork
+    private readonly TransactionDbContext _context;
+
+    public UnitOfWork(TransactionDbContext context)
     {
+        _context = context;
+    }
+
+    public async Task SaveChangesAsync(CancellationToken ct)
+    {
+        try
+        {
+            await _context.SaveChangesAsync(ct);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            throw new ConcurrencyException("Concurrent update detected");
+        }
     }
 }
