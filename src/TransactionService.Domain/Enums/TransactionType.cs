@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace TransactionService.Domain.Enums;
 
-namespace TransactionService.Domain.Enums
+public enum TransactionType
 {
-    internal class TransactionType
-    {
-    }
+    Transfer,
+    Deposit,
+    Withdraw
 }

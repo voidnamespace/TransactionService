@@ -16,6 +16,8 @@ public class Transaction
 
     public MoneyVO Money { get; private set; } = null!;
 
+    public TransactionType Type { get; private set; }
+
     public TransactionStatus Status { get; private set; }
 
     public DateTime CreatedAt { get; private set; }
@@ -23,16 +25,13 @@ public class Transaction
     private Transaction() { }
 
 
-    public Transaction (Guid BankCardId, Guid fromAccountId, Guid toAccountId, MoneyVO money)
+    public Transaction (Guid cardId, Guid fromAccountId, Guid toAccountId, MoneyVO money)
     {
         if (fromAccountId == toAccountId)
             throw new DomainException("Accounts must be different");
 
-        if (money.Amount <= 0)
-            throw new DomainException("Amount must be positive");
-
         Id = Guid.NewGuid();
-        CardId = BankCardId;
+        CardId = cardId;
         FromAccountId = fromAccountId;
         ToAccountId = toAccountId;
         Money = money;
