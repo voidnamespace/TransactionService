@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: transaction-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: transactiondb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - transaction_pg_data:/var/lib/postgresql/data
+
+volumes:
+  transaction_pg_data:
