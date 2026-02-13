@@ -1,9 +1,6 @@
-﻿namespace TransactionService.Infrastructure.Messaging;
+﻿namespace TransactionService.Application.Interfaces;
 
-public class FakeEventBus : IEventBus
+public interface IEventBus
 {
-    public Task PublishAsync<T>(T @event)
-    {
-        return Task.CompletedTask;
-    }
+    Task PublishAsync<T>(T @event);
 }

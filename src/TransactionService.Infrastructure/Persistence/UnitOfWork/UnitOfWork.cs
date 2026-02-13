@@ -1,6 +1,6 @@
 ﻿using TransactionService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
+using TransactionService.Application.Exceptions;
 using TransactionService.Application.Interfaces;
 
 namespace TransactionService.Infrastructure.Persistence.UnitOfWork;

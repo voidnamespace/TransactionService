@@ -2,7 +2,7 @@
 using TransactionService.Domain.Entities;
 using TransactionService.Domain.ValueObjects;
 using TransactionService.Application.Interfaces;
-using TransactionService.Infrastructure.Messaging;
+using TransactionService.Application.Events;
 namespace TransactionService.Application.Commands.CreateTransfer;
 
 public class CreateTransferHandler
@@ -10,13 +10,16 @@ public class CreateTransferHandler
 {
     private readonly ITransactionRepository _repository;
     private readonly IEventBus _eventBus;
+    private readonly IUnitOfWork _unitOfWork;
 
     public CreateTransferHandler(
         ITransactionRepository repository,
-        IEventBus eventBus)
+        IEventBus eventBus,
+        IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _eventBus = eventBus;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Guid> Handle(
@@ -26,13 +29,13 @@ public class CreateTransferHandler
         var money = new MoneyVO(cmd.Amount, cmd.Currency);
 
         var transaction = new Transaction(
-            cardId: Guid.Empty, // пока ок
+            cardId: Guid.Empty, 
             fromAccountId: cmd.FromAccountId,
             toAccountId: cmd.ToAccountId,
             money: money);
 
         await _repository.AddAsync(transaction, ct);
-        await _repository.SaveChangesAsync(ct);
+        await _unitOfWork.SaveChangesAsync(ct);
 
         await _eventBus.PublishAsync(
             new TransferRequestedEvent(
