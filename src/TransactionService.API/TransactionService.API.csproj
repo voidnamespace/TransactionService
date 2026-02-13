@@ -15,9 +15,4 @@
     <ProjectReference Include="..\TransactionService.Infrastructure\TransactionService.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Middleware\" />
-  </ItemGroup>
-
 </Project>
