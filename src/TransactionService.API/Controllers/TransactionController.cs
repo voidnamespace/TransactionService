@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TransactionService.Application.Commands.CreateTransfer;
+using TransactionService.Application.DTOs;
 
 namespace TransactionService.API.Controllers;
 
@@ -17,14 +18,18 @@ public class TransactionController : ControllerBase
 
     [HttpPost("transfer")]
     public async Task<IActionResult> Transfer(
-        [FromBody] CreateTransferCommand command,
-        CancellationToken ct)
+    [FromBody] CreateTransferRequest request,
+    CancellationToken ct)
     {
+        var command = new CreateTransferCommand(
+            request.FromAccountId,
+            request.ToAccountId,
+            request.Amount,
+            request.Currency);
+
         var transactionId = await _mediator.Send(command, ct);
 
-        return Accepted(new
-        {
-            transactionId
-        });
+        return Accepted(new { transactionId });
     }
+
 }
