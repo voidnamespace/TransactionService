@@ -43,7 +43,7 @@ public class CreateTransferHandler
                 transaction.FromAccountId,
                 transaction.ToAccountId,
                 transaction.Money.Amount,
-                transaction.Money.Currency));
+                transaction.Money.Currency.ToString()));
 
         return transaction.Id;
     }
