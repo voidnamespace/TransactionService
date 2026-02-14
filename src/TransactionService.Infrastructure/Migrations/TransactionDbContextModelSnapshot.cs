@@ -62,8 +62,9 @@ namespace TransactionService.Infrastructure.Migrations
                                 .HasColumnType("numeric")
                                 .HasColumnName("Amount");
 
-                            b1.Property<int>("Currency")
-                                .HasColumnType("integer")
+                            b1.Property<string>("Currency")
+                                .IsRequired()
+                                .HasColumnType("text")
                                 .HasColumnName("Currency");
 
                             b1.HasKey("TransactionId");

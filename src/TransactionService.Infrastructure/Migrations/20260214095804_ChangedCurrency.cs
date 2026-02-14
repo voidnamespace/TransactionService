@@ -10,14 +10,6 @@ namespace TransactionService.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
-                name: "Currency",
-                table: "Transactions",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
             migrationBuilder.AddColumn<int>(
                 name: "Type",
                 table: "Transactions",
@@ -32,14 +24,6 @@ namespace TransactionService.Infrastructure.Migrations
             migrationBuilder.DropColumn(
                 name: "Type",
                 table: "Transactions");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Currency",
-                table: "Transactions",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
         }
     }
 }
