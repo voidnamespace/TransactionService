@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using TransactionService.Application.Interfaces;
-
 namespace TransactionService.Infrastructure.Messaging;
 
 public class FakeEventBus : IEventBus
@@ -21,4 +20,3 @@ public class FakeEventBus : IEventBus
         return Task.CompletedTask;
     }
 }
-

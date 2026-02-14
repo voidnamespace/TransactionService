@@ -1,5 +1,4 @@
 ﻿using TransactionService.Domain.Enums;
-
 namespace TransactionService.Application.DTOs;
 
 public record CreateTransferRequest(
@@ -8,4 +7,3 @@ public record CreateTransferRequest(
     decimal Amount,
     Currency Currency
 );
-

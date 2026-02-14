@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-
 namespace TransactionService.API.Middleware;
 
 public class ExceptionMiddleware
