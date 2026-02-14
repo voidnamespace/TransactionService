@@ -17,8 +17,7 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
 
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IEventBus, FakeEventBus>();
-
+builder.Services.AddScoped<IEventBus, RabbitMqEventBus>();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(
         typeof(TransactionService.Application.Commands.CreateTransfer.CreateTransferCommand).Assembly));

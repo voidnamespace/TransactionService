@@ -16,7 +16,7 @@ public class Transaction
 
     public MoneyVO Money { get; private set; } = null!;
 
-    public TransactionType Type;
+    public TransactionType Type { get; private set; }
 
     public TransactionStatus Status { get; private set; }
 
