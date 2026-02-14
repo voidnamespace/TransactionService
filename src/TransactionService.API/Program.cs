@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using TransactionService.API.Middleware;
 using TransactionService.Application.Interfaces;
 using TransactionService.Infrastructure.Data;
 using TransactionService.Infrastructure.Messaging;
 using TransactionService.Infrastructure.Persistence.UnitOfWork;
 using TransactionService.Infrastructure.Repositories;
-using TransactionService.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,13 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(
         typeof(TransactionService.Application.Commands.CreateTransfer.CreateTransferCommand).Assembly));
 
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters
+            .Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 
