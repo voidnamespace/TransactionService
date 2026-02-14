@@ -1,0 +1,45 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace TransactionService.Infrastructure.Migrations
+{
+    /// <inheritdoc />
+    public partial class ChangedCurrency : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<int>(
+                name: "Currency",
+                table: "Transactions",
+                type: "integer",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "text");
+
+            migrationBuilder.AddColumn<int>(
+                name: "Type",
+                table: "Transactions",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "Type",
+                table: "Transactions");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Currency",
+                table: "Transactions",
+                type: "text",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "integer");
+        }
+    }
+}
