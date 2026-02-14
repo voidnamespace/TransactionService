@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using TransactionService.Application.Exceptions;
 using TransactionService.Application.Interfaces;
-
 namespace TransactionService.Infrastructure.Persistence.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork

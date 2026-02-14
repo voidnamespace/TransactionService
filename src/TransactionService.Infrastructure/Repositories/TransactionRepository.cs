@@ -2,7 +2,6 @@
 using TransactionService.Application.Interfaces;
 using TransactionService.Domain.Entities;
 using TransactionService.Infrastructure.Data;
-
 namespace TransactionService.Infrastructure.Repositories;
 
 public class TransactionRepository : ITransactionRepository
