@@ -25,7 +25,10 @@ public class TransactionDbContext : DbContext
             {
                 money.Property(x => x.Amount).HasColumnName("Amount");
                 money.Property(x => x.Currency).HasColumnName("Currency");
+                money.Property(x => x.Currency)
+                .HasColumnName("Currency")
+                .HasConversion<string>();  
             });
-        });
+        });       
     }
 }
